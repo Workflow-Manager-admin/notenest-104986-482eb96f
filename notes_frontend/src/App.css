@@ -29,27 +29,33 @@
 }
 
 /* RESET & BASE */
+/* Set the gradient on html for visibility in all modes, and make body/.ns-root background transparent */
+html {
+  /* Default light-mode gradient + fallback solid */
+  background: linear-gradient(135deg, #1976d2 0%, #ff9800 100%);
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+/* Override gradient in dark mode */
+[data-theme="dark"] html {
+  background: linear-gradient(135deg, #23272f 0%, #9c27b0 100%);
+  background-color: #16181c;
+  min-height: 100vh;
+}
+
 body, .ns-root {
   margin: 0;
   padding: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  /* Gradient background, fallback to solid */
-  background: linear-gradient(135deg, #1976d2 0%, #ff9800 100%);
-  background-color: var(--ns-bg);
+  /* Transparent backgrounds so gradient from html shows through;
+     use var(--ns-bg) only for inner containers for contrast. */
+  background: transparent;
   color: var(--ns-text);
   min-height: 100vh;
   box-sizing: border-box;
-  transition: background 0.3s;
-}
-
-/* Dark mode gradient override */
-[data-theme="dark"] body,
-[data-theme="dark"] .ns-root {
-  /* Gradient using provided dark mode colors */
-  background: linear-gradient(135deg, #23272f 0%, #9c27b0 100%);
-  background-color: var(--ns-bg);
-  transition: background 0.3s;
+  transition: color 0.3s;
 }
 
 /* HEADER */
