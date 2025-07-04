@@ -34,10 +34,22 @@ body, .ns-root {
   padding: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background: var(--ns-bg);
+  /* Gradient background, fallback to solid */
+  background: linear-gradient(135deg, #1976d2 0%, #ff9800 100%);
+  background-color: var(--ns-bg);
   color: var(--ns-text);
   min-height: 100vh;
   box-sizing: border-box;
+  transition: background 0.3s;
+}
+
+/* Dark mode gradient override */
+[data-theme="dark"] body,
+[data-theme="dark"] .ns-root {
+  /* Gradient using provided dark mode colors */
+  background: linear-gradient(135deg, #23272f 0%, #9c27b0 100%);
+  background-color: var(--ns-bg);
+  transition: background 0.3s;
 }
 
 /* HEADER */
@@ -214,7 +226,8 @@ body, .ns-root {
   width: 98%;
   max-width: 560px;
   margin: 0 auto;
-  background: var(--ns-fg);
+  /* Oppose transparency to background for legibility on gradient */
+  background: var(--ns-fg, #fff);
   border-radius: 7px;
   padding: 28px 24px 18px 24px;
   box-shadow: var(--ns-shadow);
@@ -222,6 +235,8 @@ body, .ns-root {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  /* Optionally add backdrop blur for extra polish on the gradient */
+  backdrop-filter: blur(1.5px);
 }
 
 /* NOTE FORM */
@@ -319,7 +334,9 @@ body, .ns-root {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(22,24,28,0.22);
+  /* Semi-transparent overlay for both backgrounds */
+  background: rgba(30, 33, 38, 0.18);
+  backdrop-filter: blur(1.5px);
 }
 
 /* FAB (floating action button) */
